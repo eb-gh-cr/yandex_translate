@@ -1,5 +1,7 @@
 require "yandex_translate/version"
 
 module YandexTranslate
-  # Your code goes here...
+  require 'yandex_translate/client'
+  require 'yandex_translate/exception'
+  require 'yandex_translate/version'
 end
