@@ -1,4 +1,5 @@
-require 'restclient'
+require 'http'
+require 'http/exceptions'
 
 module YandexTranslate
   class Client
@@ -29,13 +30,16 @@ module YandexTranslate
     def send_request(request = {}, params = {})
       params[:key] = @key
       begin
-        result = RestClient.post(
-          File.join(BASE_URL, request[:method]), params
-        )
-        JSON.parse(result)
-      rescue RestClient::Exception => e
+        response = Http::Exceptions.wrap_and_check do
+          HTTP.post(
+            URI.join(BASE_URL, request[:method]),
+            form: params
+          )
+        end
+        JSON.parse(response.to_s)
+      rescue Http::Exceptions::HttpException => e
         raise YandexTranslate::Exception.new(
-                "Request error: #{e.http_code} #{e.response.body}"
+                "Request error: #{e.message}"
               )
       end
     end
