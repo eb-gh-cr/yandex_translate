@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://translate.yandex.net/api/v1.5/tr.json/translate
+    body:
+      encoding: UTF-8
+      string: text=%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F&lang=af&key=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - translate.yandex.net
+      User-Agent:
+      - http.rb/3.3.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.6.2
+      Date:
+      - Mon, 16 Jul 2018 10:52:43 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '46'
+      Connection:
+      - close
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+    body:
+      encoding: UTF-8
+      string: '{"code":200,"lang":"ru-af","text":["Rusland"]}'
+    http_version: 
+  recorded_at: Mon, 16 Jul 2018 10:52:43 GMT
+recorded_with: VCR 4.0.0
